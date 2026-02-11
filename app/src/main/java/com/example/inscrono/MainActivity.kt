@@ -26,46 +26,36 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.inscrono.ui.theme.InscroNoTheme
+import androidx.core.net.toUri
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
         setContent {
-//            InscroNoTheme {
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
-//                    LazyColumn {
-//                        items(people) { // items iterator
-//                            ListItem(it) // it: iterator
-//                            // ListItem is composable
-//                        }
-//                    }
-//                }
-//            }
-//            Button(
-//                onClick = { showOverlay() },
-//                modifier = Modifier.fillMaxSize()
-//            ) {
-//                Text("Show Overlay")
-//            }
+            InscroNoTheme {
+            }
+            Button(
+                onClick = { showOverlay() },
+                modifier = Modifier.fillMaxSize()
+            ) {
+                Text("Show Overlay")
+            }
         }
     }
 
-//    private fun showOverlay() {
-//        if (!Settings.canDrawOverlays(this)) {
-//            val intent = Intent(
-//                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-//                Uri.parse("package:$packageName")
-//            )
-//            startActivity(intent)
-//            return
-//        }
-//        OverlayManager.show(this)
-//    }
+    private fun showOverlay() {
+        if (!Settings.canDrawOverlays(this)) {
+            val intent = Intent(
+                Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                "package:$packageName".toUri()
+            )
+            startActivity(intent)
+            return
+        }
+        OverlayManager.show(this)
+    }
 }
 
 @Composable
