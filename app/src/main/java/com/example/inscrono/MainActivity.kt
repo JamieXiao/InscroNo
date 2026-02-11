@@ -26,8 +26,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.inscrono.ui.theme.InscroNoTheme
-import androidx.core.net.toUri
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +47,7 @@ class MainActivity : ComponentActivity() {
         if (!Settings.canDrawOverlays(this)) {
             val intent = Intent(
                 Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                "package:$packageName".toUri()
+                Uri.parse("package:$packageName")
             )
             startActivity(intent)
             return
